@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>BAI TAP JS</title>
+</head>
+<body>
+	<div>
+		<select id="Select1" onchange="getNamebyClassname()">
+			<option>---------</option>
+		</select>
+		<select id="Select2">
+			<option>---------</option>
+		</select>
+	</div>
+</body>
+
+<script>
+	var students = [
+        { id: 1, name: 'tran van a', className: '.net' },
+        { id: 2, name: 'tran van b', className: '.net' },
+        { id: 3, name: 'tran van c', className: 'angular' },
+        { id: 4, name: 'tran van d', className: 'angular' },
+        { id: 5, name: 'tran van e', className: 'java' },
+        { id: 6, name: 'tran van f', className: 'java' },
+        { id: 7, name: 'tran van g', className: 'java' },
+        { id: 8, name: 'tran van h', className: 'test' },
+        { id: 9, name: 'tran van i', className: 'test' },
+        { id: 10, name: 'tran van j', className: 'test' }
+    ];
+    var ClassName = document.getElementById("Select1");
+    var Name = document.getElementById("Select2");
+    var myClassName = [];
+
+    students.forEach(Student => {
+        if (myClassName.lastIndexOf(Student.className) == -1)
+            myClassName.push(Student.className);
+    });
+
+    myClassName.forEach(className => {
+        Select1.innerHTML += '<option value="' + className + '">' + className + '</option>';
+    });
+
+    function getNamebyClassname() {
+        Select2.innerHTML = "";
+        students.forEach(Student => {
+            if (Student.className == Select1.value)
+                Select2.innerHTML += '<option value="' + Student.id + '">' + Student.name + '</option>';
+        });
+  
+    }
+</script>
+</html>
